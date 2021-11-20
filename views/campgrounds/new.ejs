@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') -%>
+    <div class="row">
+        <h1 class="text-center">New Campground</h1>
+        <div class="col-6 offset-3">
+            <form class='needs-validation' action="/campgrounds" method="POST" novalidate>
+                <div class="mb-2">
+                    <label class='form-label' for="title">Title</label>
+                    <input class='form-control' type="text" name='campground[title]' required>
+                    <div class="invalid-feedback">
+                        Title is required.
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label class='form-label' for="location">Location</label class='form-label'>
+                    <input class='form-control' type="text" name='campground[location]' required>
+                    <div class="invalid-feedback">
+                        Location is required.
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="image" class="form-label">Image Url</label>
+                    <input name='campground[image]' type="text" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label class='form-label' for="price">Price</label>
+                    <div class="d-flex">
+                        <div class="input-group-text" style='border-right: none'>$</div>
+                        <input class='form-control' style='border-left: none' type="number" step="0.01" name='campground[price]'>
+                    </div>
+                </div>
+                <div class="">
+                    <label class='form-label' for="description">Description</label>
+                    <textarea class='form-control' type="text" name='campground[description]'>
+                </textarea>
+                </div>
+
+                <button class='btn btn-success my-3'>Save Campground</button>
+                <p>
+                    <a class='btn btn-primary' href="/campgrounds/">All Campground</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+
+   
