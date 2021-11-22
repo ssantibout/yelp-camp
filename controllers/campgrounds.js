@@ -2,7 +2,7 @@ const Campground = require('../models/campground');
 const catchAsync = require('../utils/catchAsync');
 
 module.exports.getAll = catchAsync(async (req, res, next) => {
-    let campgrounds = await Campground.find();
+    let campgrounds = await Campground.find().populate('images');
     res.render('campgrounds/index', { campgrounds });
 });
 
@@ -49,12 +49,9 @@ module.exports.edit = catchAsync(async (req, res) => {
 });
 
 module.exports.create = catchAsync(async (req, res) => {
-    const { title, image, location, price, description, } = req.body.campground;
-    const author = req.user;
-    const newCampground = new Campground({ title, price, description, location, author });
-    if (image) {
-        newCampground.images.push(image);
-    }
+    const newCampground = new Campground(req.body.campground);
+    newCampground.images = req.files.map(f => ({ url: f.path, filename: f.file }));
+    newCampground.author = req.user._id;
     await newCampground.save();
     req.flash('success', 'Successfully created a new campground.');
     res.redirect('/campgrounds');

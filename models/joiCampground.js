@@ -8,7 +8,7 @@ const campgroundJoi = Joi.object({
     location: Joi.string()
         .required(),
     price: Joi.number(),
-    image: Joi.string(),
+    image: Joi.array().items(Joi.string, Joi.string),
     description: Joi.string()
 });
 

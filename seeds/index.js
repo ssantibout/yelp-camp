@@ -42,7 +42,7 @@ const seedDb = async () => {
             // console.log(img)
             // console.log('=============================')
             // newCampground.images.push(img.data)
-            newCampground.images.push(url)
+            newCampground.images.push({ url, filename: 'seed image' })
             await newCampground.save();
         } catch (e) {
             console.clear();

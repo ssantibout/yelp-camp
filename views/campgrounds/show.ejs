@@ -2,8 +2,8 @@
     <style>
         img {
             width: 100%;
-            max-height: 200px
-        }
+            height: 400px
+        } 
 
         .center {
             margin: 0 auto;
@@ -12,6 +12,10 @@
         li {
             list-style: none;
         }
+
+        .card {
+            /* width: 70%; */
+        }
     </style>
     <!-- <div class="row"> -->
     <!-- <div class='col-md-10 offset-2'> -->
@@ -19,8 +23,31 @@
         <div class="col-md-6">
             <!-- ------------- LEFT CARD ---------------- -->
             <div class="card">
-                <img src="<%= campground.images[campground.images.length - 1]%> " class="card-img-top"
-                    alt="campground image" />
+                <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <% campground.images.forEach((img, i) => { %>
+                        <button type="button" data-bs-target="#carousel" data-bs-slide-to="<%= i %>"
+                        class="<%= i === 0 ? 'active': '' %>" aria-current="true" aria-label="Slide 1"></button>
+                      <% }) %>
+                    </div>
+                    <div class="carousel-inner">
+                        <% campground.images.forEach((img, i) => { %>
+                            <div class="carousel-item <%= i === 0 ? 'active': '' %>">
+                                <img src="<%= img.url %>" class="d-block w-100" alt="...">
+                            </div>
+                          <% }) %>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="card-body">
                     <h3 class="card-title">
                         <%= campground.title %>

@@ -20,10 +20,12 @@ const CampgroundSchema = new Schema({
         type: String,
         required: true
     },
-    images: {
-        type: [{ type: String }],
-        default: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAQSZmSmewnaIqSnb176gv4okKJAXm5OnXVw&usqp=CAU"]
-    },
+    images: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
     reviews: [
         {
             type: Schema.Types.ObjectId,
